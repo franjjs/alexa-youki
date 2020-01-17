@@ -1,0 +1,39 @@
+{
+	"manifest": {
+		"publishingInformation": {
+			"locales": {
+				"es-ES": {
+					"summary": "Pide a Youki que te cuente chistes.",
+					"examplePhrases": [ "Alexa dile a Youki que me cuente un chiste" ],
+					"keywords": [ "risa", "chistes" ],
+					"name": "chistes catalogados y tipificados",
+					"description": "Para empezar, simplemente di «Alexa, activa a Youki» o «Alexa, lanza a Youki». En cualquier momento, puedes parar diciendo «Alexa, detente»"
+				},
+				"es-MX": {
+					"summary": "Pide a Youki que te cuente chistes.",
+					"examplePhrases": [ "Alexa dile a Youki que me cuente un chiste" ],
+					"keywords": [ "risa", "chistes" ],
+					"name": "chistes catalogados y tipificados",
+					"description": "Para empezar, simplemente di «Alexa, activa a Youki» o «Alexa, lanza a Youki». En cualquier momento, puedes parar diciendo «Alexa, detente»"
+				},
+				"es-US": {
+					"summary": "Pide a Youki que te cuente chistes.",
+					"examplePhrases": [ "Alexa dile a Youki que me cuente un chiste" ],
+					"keywords": [ "risa", "chistes" ],
+					"name": "chistes catalogados y tipificados",
+					"description": "Para empezar, simplemente di «Alexa, activa a Youki» o «Alexa, lanza a Youki». En cualquier momento, puedes parar diciendo «Alexa, detente»"
+				}
+			},
+			"category": "FRIENDS_AND_FAMILY"
+		},
+		"apis": {
+			"custom": {
+				"endpoint": {
+					"sourceDir": "lambda/py/lambda_upload",
+					"uri": "ask-youki-default"
+				}
+			}
+		},
+		"manifestVersion": "1.0"
+	}
+}

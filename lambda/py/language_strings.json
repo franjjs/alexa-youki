@@ -1,0 +1,45 @@
+{
+	"es": {
+		"ROOT_CATEGORY": "es",
+		"SKILL_NAME": "Youki",
+		"JOKE_REQUEST_MESSAGE": "{prejoke} {joke}",
+		"HELP_MESSAGE": "Puedes decir por ejemplo: cuéntame un chiste. Dime algo.",
+		"HELP_REPROMPT": "Youki a tu servicio. ¿Qué quieres?",
+		"FALLBACK_MESSAGE": "Youki no te puede ayudar con eso. Esta para contarte chistes",
+		"FALLBACK_REPROMPT": "Tengo al chistoso Youki activo. Dile algo.",
+		"ERROR_MESSAGE": "Vaya, algo ha pasado.",
+		"STOP_MESSAGE": "Adiós!",
+		"PREJOKES": [
+			"Ahí va uno...",
+			"Ahí va otro",
+			"Me estoy animando, seguimos:",
+			"mmm, déjame que piense...ya lo tengo:",
+			"eee, otro más:",
+			"guau, un más:"
+		],
+		"JOKES": {
+			"defaults": [
+				"Esto van dos en una moto y ... se cae el del medio."
+			],
+			"medicos": [
+				"Esto va un médico y....",
+				"Esto van dos médidos y ...", 
+				"Esto van tres médicos y ..."
+			],
+			"niños": [
+				"Un niño está sólo en el cole y ....",
+				"Dos niños se encuentran en el cole ...",
+				"Tres niños se encuentran en el cole ..."
+			]
+		}
+	},
+	"es-ES": {
+		"SKILL_NAME": "Youki para España"
+	},
+	"es-MX": {
+		"SKILL_NAME": "Youki para México"
+	},
+	"es-US": {
+		"SKILL_NAME": "Youki para Estados Unidos"
+	}
+}
