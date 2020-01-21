@@ -5,8 +5,10 @@ import random
 import logging
 import json
 import prompts
+import traceback
 
 from ask_sdk_core.skill_builder import SkillBuilder
+from ask_sdk_core.api_client import DefaultApiClient
 from ask_sdk_core.dispatch_components import (
     AbstractRequestHandler, AbstractExceptionHandler,
     AbstractRequestInterceptor, AbstractResponseInterceptor)
@@ -17,6 +19,7 @@ from ask_sdk_model.ui import SimpleCard
 from ask_sdk_model import Response
 
 sb = SkillBuilder()
+
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
@@ -31,27 +34,37 @@ class JokeRequestIntentHandler(AbstractRequestHandler):
                 is_intent_name("JokeRequestIntent")(handler_input))
 
     def handle(self, handler_input):
-        # type: (HandlerInput) -> Response
+        # type: (HandlerInput) -> Response 
         logger.info("In JokeRequestIntentHandler")
+        should_end_session = False
 
         data = handler_input.attributes_manager.request_attributes["_"]
 
         joke_list = data[prompts.JOKES]["defaults"]
+        joke_voice = random.choice(data[prompts.VOICES])
         prejoke = data[prompts.PREJOKES]
 
         random_joke = random.choice(joke_list)
+        random_joke = f"""
+        <amazon:emotion name="excited" intensity="medium">
+            <voice name="{joke_voice}">
+                {random_joke}
+            </voice>
+        </amazon:emotion>"""
         random_prejoke = random.choice(prejoke)
 
         # compose the speech
         speech = data[prompts.JOKE_REQUEST_MESSAGE].format(
             prejoke = random_prejoke,
-            joke = random_fact
+            joke = random_joke
         )
 
         handler_input.response_builder.speak(speech).set_card(
-            SimpleCard(data[prompts.SKILL_NAME],
-            joke)
-        )
+            SimpleCard(
+                data[prompts.SKILL_NAME],
+                random_joke
+            )
+        ).set_should_end_session(should_end_session)
         return handler_input.response_builder.response
 
 
@@ -65,17 +78,20 @@ class HelpIntentHandler(AbstractRequestHandler):
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
         logger.info("In HelpIntentHandler")
+        should_end_session = False
 
         # get localization data
         data = handler_input.attributes_manager.request_attributes["_"]
 
         speech = data[prompts.HELP_MESSAGE]
         reprompt = data[prompts.HELP_REPROMPT]
-        handler_input.response_builder.speak(speech).ask(
-            reprompt).set_card(SimpleCard(
-                data[prompts.SKILL_NAME], speech))
+        handler_input.response_builder.speak(speech).ask(reprompt).set_card(
+            SimpleCard(
+                data[prompts.SKILL_NAME],
+                speech
+            )
+        ).set_should_end_session(should_end_session)
         return handler_input.response_builder.response
-
 
 class CancelOrStopIntentHandler(AbstractRequestHandler):
     """Single handler for Cancel and Stop Intent."""
@@ -88,12 +104,13 @@ class CancelOrStopIntentHandler(AbstractRequestHandler):
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
         logger.info("In CancelOrStopIntentHandler")
+        should_end_session = True
 
         # get localization data
         data = handler_input.attributes_manager.request_attributes["_"]
 
         speech = data[prompts.STOP_MESSAGE]
-        handler_input.response_builder.speak(speech)
+        handler_input.response_builder.speak(speech).set_should_end_session(should_end_session)
         return handler_input.response_builder.response
 
 
@@ -129,7 +146,8 @@ class LocalizationInterceptor(AbstractRequestInterceptor):
     """
 
     def process(self, handler_input):
-        locale = handler_input.request_envelope.request.locale
+        #locale = handler_input.request_envelope.request.locale or 'es-ES'
+        locale = "es-ES"
         logger.info("Locale is {}".format(locale[:2]))
 
         # localized strings stored in language_strings.json
@@ -176,8 +194,10 @@ class CatchAllExceptionHandler(AbstractExceptionHandler):
         logger.info("In CatchAllExceptionHandler")
         logger.error(exception, exc_info=True)
 
-        handler_input.response_builder.speak(EXCEPTION_MESSAGE).ask(
-            HELP_REPROMPT)
+        exception_trace = traceback.format_exc()    
+
+        handler_input.response_builder.speak(
+            "Youki está en pruebas todavía!!! excepción es: {}".format(exception_trace)).ask("Lo siento")
 
         return handler_input.response_builder.response
 
@@ -217,3 +237,4 @@ sb.add_global_response_interceptor(ResponseLogger())
 
 # Handler name that is used on AWS lambda
 lambda_handler = sb.lambda_handler()
+

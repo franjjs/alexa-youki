@@ -3,31 +3,32 @@
 		"ROOT_CATEGORY": "es",
 		"SKILL_NAME": "Youki",
 		"JOKE_REQUEST_MESSAGE": "{prejoke} {joke}",
-		"HELP_MESSAGE": "Puedes decir por ejemplo: cuéntame un chiste. Dime algo.",
+		"HELP_MESSAGE": "Puedes a youki: cuéntame un chiste.",
 		"HELP_REPROMPT": "Youki a tu servicio. ¿Qué quieres?",
 		"FALLBACK_MESSAGE": "Youki no te puede ayudar con eso. Esta para contarte chistes",
-		"FALLBACK_REPROMPT": "Tengo al chistoso Youki activo. Dile algo.",
+		"FALLBACK_REPROMPT": "Aquí tengo al chistoso Youki. Dile algo.",
 		"ERROR_MESSAGE": "Vaya, algo ha pasado.",
 		"STOP_MESSAGE": "Adiós!",
+		"VOICES": ["Conchita"],
 		"PREJOKES": [
 			"Ahí va uno...",
 			"Ahí va otro",
 			"Me estoy animando, seguimos:",
-			"mmm, déjame que piense...ya lo tengo:",
-			"eee, otro más:",
-			"guau, un más:"
+			"déjame que piense...ya lo tengo:",
+			"otro más:",
+			"guau, uno más:"
 		],
 		"JOKES": {
 			"defaults": [
-				"Esto van dos en una moto y ... se cae el del medio."
+				"Esto van dos en una moto, y ... se cae el del medio."
 			],
 			"medicos": [
-				"Esto va un médico y....",
-				"Esto van dos médidos y ...", 
-				"Esto van tres médicos y ..."
+				"Esto va un médico, y....",
+				"Esto van dos médidos, y ...", 
+				"Esto van tres médicos, y ..."
 			],
 			"niños": [
-				"Un niño está sólo en el cole y ....",
+				"Un niño está sólo en el cole y, ....",
 				"Dos niños se encuentran en el cole ...",
 				"Tres niños se encuentran en el cole ..."
 			]

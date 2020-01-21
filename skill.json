@@ -30,7 +30,7 @@
 			"custom": {
 				"endpoint": {
 					"sourceDir": "lambda/py/lambda_upload",
-					"uri": "ask-youki-default"
+					"uri": "ask-custom-youki-default"
 				}
 			}
 		},
